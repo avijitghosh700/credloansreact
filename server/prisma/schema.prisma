@@ -1,0 +1,41 @@
+// Prisma schema for Credit Dashboard & Loan Management System
+// Define User, Loan, Repayment models as a starting point
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String   @unique
+  password  String
+  loans     Loan[]
+  createdAt DateTime @default(now())
+}
+
+model Loan {
+  id         Int      @id @default(autoincrement())
+  amount     Float
+  status     String
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  repayments Repayment[]
+  createdAt  DateTime @default(now())
+}
+
+model Repayment {
+  id        Int      @id @default(autoincrement())
+  amount    Float
+  dueDate   DateTime
+  paid      Boolean  @default(false)
+  loanId    Int
+  loan      Loan     @relation(fields: [loanId], references: [id])
+  createdAt DateTime @default(now())
+}
