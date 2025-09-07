@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRegister } from '../../shared/queries/authQueries';
 
 import { Eye, EyeOff, Loader } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const registerSchema = z
   .object({
@@ -31,7 +31,11 @@ const Register: FC = () => {
     password: false,
     confirmPassword: false,
   });
-  const { mutate: signUp, isPending } = useRegister();
+  const navigate = useNavigate();
+
+  const { mutate: signUp, isPending } = useRegister(() => {
+    navigate('/dashboard');
+  });
 
   const {
     register,
@@ -235,7 +239,7 @@ const Register: FC = () => {
           <div className="important-links flex flex-col gap-y-2 text-center">
             <Link
               to="/auth/login"
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-slate-800 hover:underline"
             >
               Already have an account?
             </Link>

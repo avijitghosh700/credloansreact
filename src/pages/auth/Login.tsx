@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useLogin } from '../../shared/queries/authQueries';
 
 import { Loader, Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const loginSchema = z.object({
   email: z.email({ message: 'Please enter a valid email address.' }),
@@ -18,7 +18,11 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Login: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { mutate: login, isPending } = useLogin();
+  const navigate = useNavigate();
+
+  const { mutate: login, isPending } = useLogin(() => {
+    navigate('/dashboard');
+  });
 
   const {
     register,
@@ -117,14 +121,14 @@ const Login: FC = () => {
           <div className="important-links flex flex-col gap-y-2 text-center">
             <Link
               to="/auth/forgot-password"
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-slate-800 hover:underline"
             >
               Forgot Password?
             </Link>
 
             <Link
               to="/auth/register"
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-slate-800 hover:underline"
             >
               Don't have an account?
             </Link>
