@@ -6,6 +6,8 @@
 # Dist
 node_modules
 dist/
+.env
+/.env
 
 # Profile
 .rspack-profile-*/
