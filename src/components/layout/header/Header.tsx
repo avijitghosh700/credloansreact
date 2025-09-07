@@ -1,6 +1,7 @@
 import { LogOut } from 'lucide-react';
 import { useLogout } from '../../../shared/queries/authQueries';
 import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
 interface HeaderProps {
   user: {
@@ -18,6 +19,10 @@ const Header = ({ user }: HeaderProps) => {
   const handleLogout = () => {
     logout();
   };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <header className="header w-full bg-white border-b border-slate-300 shadow-md min-h-12">
