@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { CircleUserRound, LogOut } from 'lucide-react';
 import { useLogout } from '../../../shared/queries/authQueries';
 import { useNavigate } from 'react-router';
@@ -23,10 +23,6 @@ const Header = ({ user }: HeaderProps) => {
   const handleLogout = () => {
     logout();
   };
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   return (
     <header className="header w-full bg-white border-b border-slate-300 shadow-md h-20">
