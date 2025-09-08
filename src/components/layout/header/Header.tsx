@@ -48,7 +48,7 @@ const Header = ({ user }: HeaderProps) => {
                 {isOpen && (
                   <div
                     className="absolute right-0 mt-2 w-48 bg-white border 
-                  border-slate-300 rounded-md shadow-lg z-50 overflow-hidden"
+                    border-slate-300 rounded-md shadow-lg z-50 overflow-hidden"
                   >
                     <ul>
                       <li
