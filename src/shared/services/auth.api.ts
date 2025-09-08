@@ -1,3 +1,4 @@
+import type { TUser } from '../types/auth.type';
 import axiosInstance from './base.api';
 
 export const login = async (credential: {
@@ -31,7 +32,7 @@ export const resetPassword = async (payload: {
   return data;
 };
 
-export const fetchUserProfile = async () => {
+export const fetchUserProfile = async (): Promise<{ user: TUser; }> => {
   const { data } = await axiosInstance.get('/auth/me');
   return data;
 };

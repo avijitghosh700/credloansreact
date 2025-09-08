@@ -8,7 +8,7 @@ import {
 } from '../../shared/queries/authQueries';
 import { ArrowLeft, Eye, EyeOff, Loader } from 'lucide-react';
 import { useNavigate } from 'react-router';
-import { useToasts } from '../../shared/hooks/toasts';
+import { useToasts } from '../../shared/hooks/useToasts';
 
 const forgotPasswordInitSchema = z.object({
   email: z.email({ message: 'Please enter a valid email address.' }),

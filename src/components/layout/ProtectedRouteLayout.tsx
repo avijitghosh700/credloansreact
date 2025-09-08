@@ -8,11 +8,11 @@ import { refreshToken } from '../../shared/services/base.api';
 import { Loader } from 'lucide-react';
 
 const Layout = () => {
-  const { data: user } = useUserProfile();
+  const { data } = useUserProfile();
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header user={user} />
+      {data && <Header user={data.user} />}
       <main className="flex-grow">
         <Outlet />
       </main>
