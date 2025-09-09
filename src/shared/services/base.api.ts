@@ -47,8 +47,6 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
-    const { setToken } = useAuthStore.getState();
-
     const originalRequest = error.config as AxiosRequestConfig & {
       _retry?: boolean;
     };
@@ -62,9 +60,6 @@ axiosInstance.interceptors.response.use(
       const newToken = await refreshPromise;
 
       if (newToken) {
-        // retry with the *fresh* token
-        setToken(newToken);
-
         if (originalRequest.headers) {
           originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
         }
