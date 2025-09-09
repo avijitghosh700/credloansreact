@@ -57,12 +57,10 @@ axiosInstance.interceptors.response.use(
       if (!refreshPromise) {
         refreshPromise = refreshToken();
       }
+      
       const newToken = await refreshPromise;
-
-      if (newToken) {
-        if (originalRequest.headers) {
-          originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
-        }
+      if (newToken && originalRequest.headers) {
+        originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
         return axiosInstance(originalRequest);
       }
     }

@@ -12,7 +12,9 @@ type AuthActions = {
   setLoading: (loading: boolean) => void;
 };
 
-export const useAuthStore = create<AuthState & AuthActions>((set) => ({
+type AuthSlice = AuthState & AuthActions;
+
+export const useAuthStore = create<AuthSlice>((set) => ({
   isAuthenticated: false,
   token: null,
   loading: true,
@@ -20,11 +22,11 @@ export const useAuthStore = create<AuthState & AuthActions>((set) => ({
   setToken: (token) =>
     set(() => {
       if (token) {
-        return { token, isAuthenticated: true };
+        return { token, isAuthenticated: true, loading: false };
       }
-      return { token: null, isAuthenticated: false };
+      return { token: null, isAuthenticated: false, loading: false };
     }),
-  clearToken: () => set({ token: null, isAuthenticated: false }),
+  clearToken: () => set({ token: null, isAuthenticated: false, loading: false }),
 }));
 
 export default useAuthStore;
