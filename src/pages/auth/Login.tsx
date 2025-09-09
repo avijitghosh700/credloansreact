@@ -118,17 +118,17 @@ const Login: FC = () => {
         </button>
 
         <div className="mt-4">
-          <div className="important-links flex flex-col gap-y-2 text-center">
+          <div className="important-links flex flex-col gap-y-2 items-center">
             <Link
               to="/auth/forgot-password"
-              className="text-sm text-slate-800 hover:underline"
+              className="flex text-sm text-slate-800 hover:underline"
             >
               Forgot Password?
             </Link>
 
             <Link
               to="/auth/register"
-              className="text-sm text-slate-800 hover:underline"
+              className="flex text-sm text-slate-800 hover:underline"
             >
               Don't have an account?
             </Link>
