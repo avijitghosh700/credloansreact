@@ -46,7 +46,12 @@ const ForgotPassword = () => {
     mutate: forgotPassword,
     isPending: isForgotPasswordPending,
     isSuccess: isForgotPasswordSuccess,
-  } = useForgotPassword();
+  } = useForgotPassword((data) => {
+    data?.message &&
+      successToast(
+        data.message || 'Email verified. Please reset your password.',
+      );
+  });
   const { mutate: resetPassword, isPending: isResetPasswordPending } =
     useResetPassword(() => {
       successToast('Password reset successful. Please login.');

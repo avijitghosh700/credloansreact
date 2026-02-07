@@ -6,3 +6,7 @@ export type TUser = {
   createdAt: string;
   loans: unknown[];
 };
+
+export type TForgotPasswordResponse = {
+  message: string;
+};

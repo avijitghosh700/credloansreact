@@ -8,6 +8,7 @@ import {
   resetPassword,
 } from '../services/auth.api';
 import useAuthStore from '../store/authSlice';
+import type { TForgotPasswordResponse } from '../types/auth.type';
 
 const { setToken } = useAuthStore.getState();
 
@@ -41,12 +42,14 @@ export const useRegister = (onSuccessHandler?: () => void) => {
   });
 };
 
-export const useForgotPassword = (onSuccessHandler?: () => void) => {
+export const useForgotPassword = (
+  onSuccessHandler?: (data?: TForgotPasswordResponse) => void,
+) => {
   return useMutation({
     mutationFn: forgotPassword,
-    onSuccess: () => {
+    onSuccess: (data) => {
       if (onSuccessHandler) {
-        onSuccessHandler();
+        onSuccessHandler(data);
       }
     },
   });
