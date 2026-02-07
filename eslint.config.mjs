@@ -20,7 +20,7 @@ export default tseslint.config([
       globals: globals.browser,
     },
     rules: {
-      '@typescript-eslint/c': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
 ]);
